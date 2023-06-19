@@ -6,6 +6,8 @@ use App\Http\Controllers\PenyakitController;
 use App\Http\Controllers\DetailGejalaController;
 use App\Http\Controllers\DetailPasienController;
 use App\Http\Controllers\PasienController;
+use App\Http\Controllers\CertaintyFactorController;
+use App\Http\Controllers\CbrController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -46,3 +48,6 @@ Route::get('detailpasien',[DetailPasienController::class,'index']);
 Route::get('login',[PasienController::class,'index']); 
 
 Route::get('registrasipasien',[PasienController::class,'registrasipasien']); 
+
+Route::resource('r2', CertaintyFactorController::class);
+Route::resource('r3', CbrController::class);
