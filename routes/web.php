@@ -19,6 +19,10 @@ use App\Http\Controllers\CbrController;
 |
 */
 
+Route::get('/', function () {
+    return view('dashboard.dashboard');
+});
+
 Route::get('dashboard', function () {
     return view('dashboard.dashboard');
 });
@@ -45,9 +49,10 @@ Route::get('deletedetailgejala/{id}',[DetailGejalaController::class,'destroy']);
 
 Route::get('detailpasien',[DetailPasienController::class,'index']); 
 
+
 Route::get('login',[PasienController::class,'index']); 
 
 Route::get('registrasipasien',[PasienController::class,'registrasipasien']); 
 
-Route::resource('r2', CertaintyFactorController::class);
-Route::resource('r3', CbrController::class);
+Route::resource('cf', CertaintyFactorController::class);
+Route::resource('cbr', CbrController::class);
