@@ -8,6 +8,11 @@ use App\Http\Controllers\DetailPasienController;
 use App\Http\Controllers\PasienController;
 use App\Http\Controllers\CertaintyFactorController;
 use App\Http\Controllers\CbrController;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\SaranController;
+use App\Http\Controllers\LaporanController;
+use App\Http\Controllers\PilihanGejalaController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -19,9 +24,8 @@ use App\Http\Controllers\CbrController;
 |
 */
 
-Route::get('dashboard', function () {
-    return view('dashboard.dashboard');
-});
+
+Route::get('dashboard',[DashboardController::class,'index']);
 Route::get('gejala',[GejalaController::class,'index']); 
 Route::get('addgejala',[GejalaController::class,'create']); 
 Route::post('postgejala',[GejalaController::class,'store']); 
@@ -51,3 +55,14 @@ Route::get('registrasipasien',[PasienController::class,'registrasipasien']);
 
 Route::resource('r2', CertaintyFactorController::class);
 Route::resource('r3', CbrController::class);
+
+Route::get('/', [AuthController::class, 'index']);
+Route::get('/login', [AuthController::class, 'index'])->name('login');
+Route::post('/auth', [AuthController::class, 'auth']);
+Route::get('/logout', [AuthController::class, 'logout']);
+
+Route::get('saran',[SaranController::class,'index']);
+
+Route::get('laporan',[LaporanController::class,'index']);
+
+Route::get('pilihgejala',[PilihanGejalaController::class,'index']);

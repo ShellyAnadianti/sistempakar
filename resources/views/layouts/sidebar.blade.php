@@ -27,18 +27,19 @@
     </button>
 
     <div data-simplebar class="sidebar-menu-scroll">
+        
 
         <!--- Sidemenu -->
         <div id="sidebar-menu">
             <!-- Left Menu Start -->
             <ul class="metismenu list-unstyled" id="side-menu">
                 <li class="menu-title">@lang('translation.Menu')</li>
-
+                @if (Auth::user()->role == 'admin')
                 <li>
                     {{-- <a href="{{url('index')}}"> --}}
                     <a href="{{url('dashboard')}}">
                         <i class="uil-home-alt"></i><span class="badge rounded-pill bg-primary float-end">01</span>
-                        <span>@lang('translation.Dashboard')</span>
+                        <span>Dashboard Admin</span>
                     </a>
                 </li>
                 <li>
@@ -72,8 +73,35 @@
                         <span>Detail Pasien</span>
                     </a>
                 </li>
+
+                <li>
+                    {{-- <a href="{{url('index')}}"> --}}
+                    <a href="{{url('laporan')}}">
+                        <i class="uil-bing"></i>
+                        <span>Laporan</span>
+                    </a>
+                    </li>
+
+                <li>
+                    {{-- <a href="{{url('index')}}"> --}}
+                    <a href="{{url('saran')}}">
+                        <i class="uil-bing"></i>
+                        <span>Saran</span>
+                    </a>
+                </li>
+                @else
+                <li>
+                    {{-- <a href="{{url('index')}}"> --}}
+                    <a href="{{url('pilihgejala')}}">
+                        <i class="uil-bing"></i>
+                        <span>Pilih Gejala</span>
+                    </a>
+                </li>
+                @endif
             </ul>
         </div>
+            
+        
         <!-- Sidebar -->
     </div>
 </div>

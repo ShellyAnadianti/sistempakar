@@ -10,13 +10,9 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <div class="text-center">
-                        <a href="{{ url('index') }}" class="mb-5 d-block auth-logo">
-                            <img src="{{ URL::asset('/assets/images/logo-supresso.png') }}" alt="" height="22"
-                                class="logo logo-dark">
-                            <img src="{{ URL::asset('/assets/images/logo-supresso.png') }}" alt="" height="22"
-                                class="logo logo-light">
-                        </a>
+                    <div class="p-3 text-center">
+                        <h5>Sistem Pakar Gigi Dan Mulut</h5>
+                        
                     </div>
                 </div>
             </div>
@@ -30,13 +26,13 @@
                                 <p class="text-muted">Sign in to continue</p>
                             </div>
                             <div class="p-2 mt-4">
-                                <form method="POST" action="">
+                                <form method="POST" action="/auth">
                                     @csrf
 
                                     <div class="mb-3">
                                         <label class="form-label" for="username">Username</label>
                                         <input type="text" class="form-control @error('username') is-invalid @enderror"
-                                            name="username"  id="username"
+                                            name="name"  id="username"
                                             placeholder="">
                                         @error('username')
                                             <span class="invalid-feedback" role="alert">
@@ -79,7 +75,7 @@
                         <p>© <script>
                                 document.write(new Date().getFullYear())
 
-                            </script> Supresso
+                            </script> Sistem Pakar Gigi Dan Mulut
                             {{-- . Crafted with <i class="mdi mdi-heart text-danger"></i> by Themesbrand --}}
                         </p>
                     </div>
