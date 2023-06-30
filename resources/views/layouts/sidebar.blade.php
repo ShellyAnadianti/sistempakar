@@ -119,6 +119,14 @@
                         <span>CBR</span>
                     </a>
                 </li>
+
+                <li>
+                    {{-- <a href="{{url('index')}}"> --}}
+                    <a href="{{url('kirimsaran')}}">
+                        <i class="uil-bing"></i>
+                        <span>Kirim Saran</span>
+                    </a>
+                </li>
             </ul>
         </div>
             

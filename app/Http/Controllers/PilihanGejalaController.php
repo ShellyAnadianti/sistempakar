@@ -16,4 +16,7 @@ class PilihanGejalaController extends Controller
     {
         dd($request->choicegejala);
     }
+    public function kirimsaran(){
+        return view('saran.kirimsaran');
+    }
 }

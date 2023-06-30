@@ -27,7 +27,10 @@
                     </div>
                 @endforeach
                 <button type="submit" class ="btn btn-primary">
-                    Lihat Hasil Konsultasi
+                    Lihat Hasil Konsultasi CF
+                </button>
+                <button type="submit" class ="btn btn-primary">
+                    Lihat Hasil Konsultasi CBR
                 </button>
             </form>
     </div>

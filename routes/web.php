@@ -75,3 +75,4 @@ Route::get('pilihgejala',[PilihanGejalaController::class,'index']);
 
 Route::post('hasilkonsultasicf',[CertaintyFactorController::class,'index']);
 
+Route::get('kirimsaran',[PilihanGejalaController::class,'kirimsaran']);
