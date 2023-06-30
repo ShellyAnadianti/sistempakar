@@ -13,7 +13,7 @@
         @slot('title') Pilih Gejala @endslot
     @endcomponent
     <div class="container">
-       <form action="/hasilkonsultasicf" method="POST">
+       <form id="form1" action="/hasilkonsultasicf" method="POST">
             @csrf
        
                 @foreach ( $gejala as $a )
@@ -26,16 +26,24 @@
                 </div>
                     </div>
                 @endforeach
-                <button type="submit" class ="btn btn-primary">
-                    Lihat Hasil Konsultasi CF
-                </button>
-                <button type="submit" class ="btn btn-primary">
-                    Lihat Hasil Konsultasi CBR
-                </button>
+                {{-- <button type="submit" class ="btn btn-primary">
+                    Lihat Hasil Konsultasi
+                </button> --}}
+
+                <input type="button" class ="btn btn-primary" onclick="submitForm('hasilkonsultasicf')" value="Hasil Konsultasi CF" />
+                <input type="button" class ="btn btn-primary" onclick="submitForm('hasilkonsultasicbr')" value="Hasil Konsultasi CBR" />
             </form>
     </div>
     @endsection
     @section('script')
     <script src="{{ URL::asset('/assets/libs/datatables/datatables.min.js') }}"></script>
     <script src="{{ URL::asset('/assets/js/pages/ecommerce-datatables.init.js') }}"></script>
+
+    <script type="text/javascript">
+        function submitForm(action) {
+          var form = document.getElementById('form1');
+          form.action = action;
+          form.submit();
+        }
+      </script>
 @endsection
