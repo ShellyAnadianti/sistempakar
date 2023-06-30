@@ -98,6 +98,27 @@
                     </a>
                 </li>
                 @endif
+                    <a href="{{url('detailpasien')}}">
+                        <i class="uil-bing"></i>
+                        <span>Detail Pasien</span>
+                    </a>
+                </li>
+
+                <li>
+                    {{-- <a href="{{url('index')}}"> --}}
+                    <a href="{{url('cf')}}">
+                        <i class="uil-bing"></i>
+                        <span>CF</span>
+                    </a>
+                </li>
+
+                <li>
+                    {{-- <a href="{{url('index')}}"> --}}
+                    <a href="{{url('cbr')}}">
+                        <i class="uil-bing"></i>
+                        <span>CBR</span>
+                    </a>
+                </li>
             </ul>
         </div>
             

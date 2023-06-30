@@ -24,8 +24,13 @@ use App\Http\Controllers\PilihanGejalaController;
 |
 */
 
+Route::get('/', function () {
+    return view('dashboard.dashboard');
+});
 
-Route::get('dashboard',[DashboardController::class,'index']);
+Route::get('dashboard', function () {
+    return view('dashboard.dashboard');
+});
 Route::get('gejala',[GejalaController::class,'index']); 
 Route::get('addgejala',[GejalaController::class,'create']); 
 Route::post('postgejala',[GejalaController::class,'store']); 
@@ -48,6 +53,7 @@ Route::post('updatedetailgejala/{id}',[DetailGejalaController::class,'update']);
 Route::get('deletedetailgejala/{id}',[DetailGejalaController::class,'destroy']); 
 
 Route::get('detailpasien',[DetailPasienController::class,'index']); 
+
 
 Route::get('login',[PasienController::class,'index']); 
 
