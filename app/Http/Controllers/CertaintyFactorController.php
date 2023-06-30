@@ -100,7 +100,19 @@ class CertaintyFactorController extends Controller
         $cfTotal = $this->hitungCF($datadbpenyakit, $gejalaUser);
         $penyakitTerdiagnosa = $this->diagnosaPenyakit($cfTotal);
         // echo "Penyakit yang mungkin terjadi: $penyakitTerdiagnosa\n";
+        $penyakitTerdiagnosa = str_replace("P","",$penyakitTerdiagnosa);
+        $arraypenyakitTerdiagnosa = explode(",",$penyakitTerdiagnosa);
 
+        $hasildiagnosapenyakit =[];
+        foreach ($arraypenyakitTerdiagnosa as $iddiagnosa) {
+            $getresultdiagnosa = DB::select('select * from tb_penyakit as p where p.id_penyakit = '.$iddiagnosa);
+            
+            array_push($hasildiagnosapenyakit, $getresultdiagnosa[0]->nama_penyakit);
+        }
+
+        $penyakitTerdiagnosa = implode(",",$hasildiagnosapenyakit);
+
+        //dd($hasildiagnosapenyakit);
         return view('rulepasien.hasilkonsultasi',compact('penyakitTerdiagnosa'));
       
     }
