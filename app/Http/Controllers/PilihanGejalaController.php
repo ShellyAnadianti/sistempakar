@@ -11,4 +11,9 @@ class PilihanGejalaController extends Controller
         $gejala=DB::select('SELECT * from tb_gejala order by id_gejala asc');
        return view('rulepasien.pilihgejala',compact('gejala'));
     }
+
+    public function test(Request $request)
+    {
+        dd($request->choicegejala);
+    }
 }

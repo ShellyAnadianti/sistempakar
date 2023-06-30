@@ -72,3 +72,6 @@ Route::get('saran',[SaranController::class,'index']);
 Route::get('laporan',[LaporanController::class,'index']);
 
 Route::get('pilihgejala',[PilihanGejalaController::class,'index']);
+
+Route::post('hasilkonsultasicf',[CertaintyFactorController::class,'index']);
+

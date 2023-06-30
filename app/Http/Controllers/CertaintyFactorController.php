@@ -22,7 +22,37 @@ class CertaintyFactorController extends Controller
 
     public function index(Request $request)
     {
-        echo"<H2>CF</H2>";
+        if(isset($request->choicegejala))
+        {
+            $stringchoicegejala = '';
+            // dump($request->choicegejala);
+            foreach ($request->choicegejala as $key => $value) {
+                if($key==0){
+                $stringchoicegejala = $stringchoicegejala .'"Gejala'.$value.'":0.8';
+                }
+                else
+                {
+                    $stringchoicegejala = $stringchoicegejala .',"Gejala'.$value.'":0.8';
+                }
+            }
+        }
+        $stringchoicegejala= "{".$stringchoicegejala."}";
+        //dump($stringchoicegejala);
+
+        // $gejalaUser = array(
+        //     "Gejala14" => 0.4,
+        //     "Gejala10" => 0.2,
+        //     "Gejala82" => 0.2,
+        //     "Gejala76" => 0.1,
+        //     "Gejala73" => 0.3,
+        // );
+
+        // dump(json_encode($gejalaUser));
+
+
+        //dd(json_decode($stringchoicegejala));
+
+        // echo"<H2>CF</H2>";
         # get data from database
         $res_penyakit = DB::select('select * from tb_penyakit');
         $stringpenyakit = '';
@@ -51,56 +81,62 @@ class CertaintyFactorController extends Controller
         }
         $stringpenyakit= "{".$stringpenyakit."}";
         $datadbpenyakit = ((array)json_decode($stringpenyakit, TRUE));
-        $gejalaUser = array(
-            "Gejala14" => 0.4,
-            "Gejala10" => 0.2,
-            "Gejala82" => 0.2,
-            "Gejala76" => 0.1,
-            "Gejala73" => 0.3,
-        );
-        dump("TABLE PENYAKIT & GEJALA");
-        dump($datadbpenyakit);
-        dump("GEJALA USER");
-        dump($gejalaUser);
+        // $gejalaUser = array(
+        //     "Gejala14" => 0.4,
+        //     "Gejala10" => 0.2,
+        //     "Gejala82" => 0.2,
+        //     "Gejala76" => 0.1,
+        //     "Gejala73" => 0.3,
+        // );
+
+        $gejalaUser = (json_decode($stringchoicegejala));
+
+
+        // dump("TABLE PENYAKIT & GEJALA");
+        // dump($datadbpenyakit);
+        // dump("GEJALA USER");
+        // dump($gejalaUser);
         
         $cfTotal = $this->hitungCF($datadbpenyakit, $gejalaUser);
         $penyakitTerdiagnosa = $this->diagnosaPenyakit($cfTotal);
-        echo "Penyakit yang mungkin terjadi: $penyakitTerdiagnosa\n";
+        // echo "Penyakit yang mungkin terjadi: $penyakitTerdiagnosa\n";
+
+        return view('rulepasien.hasilkonsultasi',compact('penyakitTerdiagnosa'));
       
     }
 
     public function hitungCF($gejalaPenyakit, $gejalaUser) {
         $cfTotal = array();
-        dump("HITUNG CF");
+        // dump("HITUNG CF");
         foreach ($gejalaPenyakit as $penyakit => $gejalap) {
             $cfTotal[$penyakit] = 1;
-            echo("<h4>call gejala : ".$penyakit."</h4>");
+            // echo("<h4>call gejala : ".$penyakit."</h4>");
             // dump($gejalaPenyakit[$penyakit]);
             // dump($penyakit);
             foreach ($gejalaUser as $gejalau => $nilai) {
                 // echo($gejalau." :".$nilai."<br>");
                 // dump(isset($gejalaPenyakit[$penyakit][$gejalau]));
                 if (isset($gejalaPenyakit[$penyakit][$gejalau])) {
-                    echo($gejalau." :".$nilai."<strong>(TRUE)</strong><br>");
+                    // echo($gejalau." :".$nilai."<strong>(TRUE)</strong><br>");
                     $cfTotal[$penyakit] += $nilai;
                 }
                 else
                 {
-                    echo($gejalau." :".$nilai."(FALSE)<br>");
+                    // echo($gejalau." :".$nilai."(FALSE)<br>");
                 }          
             }
-            echo("<h4>total value : ".$cfTotal[$penyakit]."</h4>");
-            echo("<h4>===================================================================================================</h4>");
+            // echo("<h4>total value : ".$cfTotal[$penyakit]."</h4>");
+            // echo("<h4>===================================================================================================</h4>");
         }
         return $cfTotal;
     }
 
     function diagnosaPenyakit($cfTotal) {
-        dump("KESIMPULAN");
+        // dump("KESIMPULAN");
         $penyakitTerbesar = '';
         $cfTerbesar = -1;
         asort($cfTotal);
-        dump($cfTotal);
+        // dump($cfTotal);
         $max= (max($cfTotal));
         $sick = [];
         

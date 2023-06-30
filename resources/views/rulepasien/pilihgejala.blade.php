@@ -13,14 +13,14 @@
         @slot('title') Pilih Gejala @endslot
     @endcomponent
     <div class="container">
-       <form action="/hasilkonsultasi">
+       <form action="/hasilkonsultasicf" method="POST">
             @csrf
        
                 @foreach ( $gejala as $a )
                 <div class="card">
                     <div class="card-body">
                     <div class="form-check">
-                        <input type="checkbox" class='form-check-input' value="{{ $a->id_gejala }}">
+                        <input type="checkbox" name="choicegejala[]" class='form-check-input' value="{{ $a->id_gejala }}">
                         <label for=""class='form-check-label'>{{ $a->nama_gejala }}</label>
                     </div>
                 </div>
