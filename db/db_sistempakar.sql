@@ -11,7 +11,7 @@
  Target Server Version : 100421
  File Encoding         : 65001
 
- Date: 17/06/2023 17:19:08
+ Date: 30/06/2023 16:56:32
 */
 
 SET NAMES utf8mb4;
@@ -23,13 +23,14 @@ SET FOREIGN_KEY_CHECKS = 0;
 DROP TABLE IF EXISTS `tb_admin`;
 CREATE TABLE `tb_admin`  (
   `ussername` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `password` varchar(15) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL
+  `password` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `rule` enum('admin','pasien') CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of tb_admin
 -- ----------------------------
-INSERT INTO `tb_admin` VALUES ('klinikgigi', '1234');
+INSERT INTO `tb_admin` VALUES ('klinikgigi', '1234', 'admin');
 
 -- ----------------------------
 -- Table structure for tb_detail_gejala
@@ -261,6 +262,26 @@ INSERT INTO `tb_gejala` VALUES (89, 'G89', 'Kedalaman lubang kecil');
 INSERT INTO `tb_gejala` VALUES (90, 'G90', 'kedalaman lubang lebih dari 2mm');
 
 -- ----------------------------
+-- Table structure for tb_laporan
+-- ----------------------------
+DROP TABLE IF EXISTS `tb_laporan`;
+CREATE TABLE `tb_laporan`  (
+  `id_laporan` int NOT NULL AUTO_INCREMENT,
+  `id_pasien` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
+  `pasien` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
+  `hasil_perhitungan_cf` decimal(10, 2) NULL DEFAULT NULL,
+  `hasil_perhitungan_cbr` decimal(10, 2) NULL DEFAULT NULL,
+  `hasil_diagnosa_cf` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
+  `hasil_diagnosa_cbr` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
+  PRIMARY KEY (`id_laporan`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of tb_laporan
+-- ----------------------------
+INSERT INTO `tb_laporan` VALUES (1, '1', 'joni', 0.33, 0.33, 'Pulpitis Reversibel', 'Pulpitis Reversibel');
+
+-- ----------------------------
 -- Table structure for tb_pasien
 -- ----------------------------
 DROP TABLE IF EXISTS `tb_pasien`;
@@ -321,14 +342,38 @@ INSERT INTO `tb_penyakit` VALUES (20, 'P20', 'Karies Enamel\r\n');
 DROP TABLE IF EXISTS `tb_saran`;
 CREATE TABLE `tb_saran`  (
   `id_saran` int NOT NULL AUTO_INCREMENT,
-  `saran` varchar(150) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
   `id_pasien` int NULL DEFAULT NULL,
+  `pasien` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
+  `saran` varchar(150) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
   PRIMARY KEY (`id_saran`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of tb_saran
 -- ----------------------------
-INSERT INTO `tb_saran` VALUES (1, 'lebih baik', NULL);
+INSERT INTO `tb_saran` VALUES (1, 1, 'joni', 'lebih baik');
+
+-- ----------------------------
+-- Table structure for users
+-- ----------------------------
+DROP TABLE IF EXISTS `users`;
+CREATE TABLE `users`  (
+  `id` int UNSIGNED NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email_verified_at` timestamp NULL DEFAULT NULL,
+  `password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `role` enum('admin','pasien') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `remember_token` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = DYNAMIC;
+
+-- ----------------------------
+-- Records of users
+-- ----------------------------
+INSERT INTO `users` VALUES (1, 'admin', 'admin@gmail.com', NULL, '$2y$10$7SeDx0iO9x8q6udfiGsIHOjoKATMIIoJsCs/qTc6VRLUWtK3m2jaq', 'admin', NULL, '2022-10-03 00:34:12', '2023-04-18 00:37:56');
+INSERT INTO `users` VALUES (2, 'pasien', 'admin1@gmail.com', NULL, '$2y$10$p8IBbQHX7FJCuCSojePw/eH6L7ANhLJB7iTDeZu6x3BscK6MkJW6.', 'pasien', NULL, '2022-10-03 21:15:06', '2022-10-03 21:15:06');
 
 SET FOREIGN_KEY_CHECKS = 1;
