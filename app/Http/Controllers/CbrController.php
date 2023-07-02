@@ -136,7 +136,7 @@ class CbrController extends Controller
 
 // dd($userCase);
 //         dd(json_decode($stringchoicegejala));
-       echo"<H2>CBR</H2>";
+    //    echo"<H2>CBR</H2>";
 
         # get data from database
         $res_penyakit = DB::select('select * from tb_penyakit');
@@ -299,10 +299,21 @@ class CbrController extends Controller
         // );
         
         $diagnosis = $this->diagnoseDisease($datadbpenyakit, $userCase);
+        $diagnosis = str_replace("P","",$diagnosis);
+        $arraydiagnosis = explode(",",$diagnosis);
         
-        echo "Diagnosis penyakit: $diagnosis\n";
+        $hasildiagnosapenyakit =[];
+        foreach ($arraydiagnosis as $iddiagnosa) {
+            $getresultdiagnosa = DB::select('select * from tb_penyakit as p where p.id_penyakit = '.$iddiagnosa);
+            
+            array_push($hasildiagnosapenyakit, $getresultdiagnosa[0]->nama_penyakit);
+        }
         
-      
+        $diagnosis = implode(",",$hasildiagnosapenyakit);
+        // echo "Diagnosis penyakit: $diagnosis\n";
+        return view('rulepasien.hasilkonsultasicbr',compact('diagnosis'));
+        
+        
     }
 
     function calculateSimilarity($case1, $case2) {
@@ -323,7 +334,7 @@ class CbrController extends Controller
           
         }
        
-        dump("matched / total : ".$matched / $total);
+        // dump("matched / total : ".$matched / $total);
         return $matched / $total;
     }
 

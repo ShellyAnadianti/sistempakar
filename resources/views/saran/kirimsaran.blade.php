@@ -1,6 +1,6 @@
-@extends('layouts.master')
+@extends('layouts.masterpasien')
 @section('title')
-    @lang('translation.Orders')
+    Kirim Saran
 @endsection
 @section('css')
     <!-- DataTables -->
@@ -13,10 +13,21 @@
         @slot('title') Kirim Saran @endslot
     @endcomponent
         <div class='row'>
-            <form action="">
+            <form method="POST" action="postsaran">                
+        @csrf 
+                <div class="form-group">
+                    <label for="saran">Nama</label>
+                    <textarea type="text" class="form-control " placeholder="masukkan nama anda"
+                        name="nama"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="saran">Email</label>
+                    <textarea type="email" class="form-control " placeholder="masukkan email anda"
+                        name="email"></textarea>
+                </div>
                 <div class="form-group">
                     <label for="saran">Saran</label>
-                    <textarea type="text" class="form-control " placeholder="masukkan saran"
+                    <textarea type="text" class="form-control " placeholder="masukkan saran anda"
                         name="saran"></textarea>
                 </div>
                 <button type="submit" class ="btn btn-primary">

@@ -24,7 +24,7 @@ class SaranController extends Controller
      */
     public function create()
     {
-        // return view('penyakit.add-penyakit');
+        return view('saran.kirimsaran');
     }
 
     /**
@@ -36,11 +36,12 @@ class SaranController extends Controller
     public function store(Request $request)
     {
         $data=[
-            'id_saran'=>$request->id_saran,
+            'nama'=>$request->nama,
+            'email'=>$request->email,
             'saran'=>$request->saran,
         ];
             DB::table('tb_saran')->insert($data);
-           return redirect('saran');
+           return redirect('addsaran');
     }
 
     /**

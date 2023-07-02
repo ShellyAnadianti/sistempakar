@@ -24,13 +24,9 @@ use App\Http\Controllers\PilihanGejalaController;
 |
 */
 
-Route::get('/', function () {
-    return view('dashboard.dashboard');
-});
+Route::get('/', [PilihanGejalaController::class,'index']);
 
-Route::get('dashboard', function () {
-    return view('dashboard.dashboard');
-});
+Route::get('dashboard',[DashboardController::class,'index']);
 Route::get('gejala',[GejalaController::class,'index']); 
 Route::get('addgejala',[GejalaController::class,'create']); 
 Route::post('postgejala',[GejalaController::class,'store']); 
@@ -46,7 +42,7 @@ Route::post('updatepenyakit/{id}',[PenyakitController::class,'update']);
 Route::get('deletepenyakit/{id}',[PenyakitController::class,'destroy']); 
 
 Route::get('detailgejala',[DetailGejalaController::class,'index']); 
-Route::get('adddetailgejala',[DetailGejalatController::class,'create']); 
+Route::get('adddetailgejala',[DetailGejalaController::class,'create']); 
 Route::post('postdetailgejala',[DetailGejalaController::class,'store']); 
 Route::get('editdetailgejala/{id}',[DetailGejalaController::class,'edit']); 
 Route::post('updatedetailgejala/{id}',[DetailGejalaController::class,'update']); 
@@ -62,12 +58,14 @@ Route::get('registrasipasien',[PasienController::class,'registrasipasien']);
 Route::resource('r2', CertaintyFactorController::class);
 Route::resource('r3', CbrController::class);
 
-Route::get('/', [AuthController::class, 'index']);
+// Route::get('/', [AuthController::class, 'index']);
 Route::get('/login', [AuthController::class, 'index'])->name('login');
 Route::post('/auth', [AuthController::class, 'auth']);
 Route::get('/logout', [AuthController::class, 'logout']);
 
 Route::get('saran',[SaranController::class,'index']);
+Route::get('addsaran',[SaranController::class,'create']);
+Route::post('postsaran',[SaranController::class,'store']); 
 
 Route::get('laporan',[LaporanController::class,'index']);
 
@@ -75,5 +73,4 @@ Route::get('pilihgejala',[PilihanGejalaController::class,'index']);
 
 Route::post('hasilkonsultasicf',[CertaintyFactorController::class,'index']);
 
-Route::get('kirimsaran',[PilihanGejalaController::class,'kirimsaran']);
 Route::post('hasilkonsultasicbr',[CbrController::class,'index']);

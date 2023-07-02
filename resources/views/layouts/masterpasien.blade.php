@@ -12,9 +12,9 @@
     @show
 
     <!-- Begin page -->
-    
-        @include('layouts.topbar')
-        {{-- @include('layouts.sidebar') --}}
+    <div id="layout-wrapper">
+        @include('layouts.topbarpasien')
+        @include('layouts.sidebarpasien')
         <!-- ============================================================== -->
         <!-- Start right Content here -->
         <!-- ============================================================== -->
@@ -29,7 +29,7 @@
             @include('layouts.footer')
         </div>
         <!-- end main content-->
-  
+    </div>
     <!-- END layout-wrapper -->
 
     <!-- Right Sidebar -->

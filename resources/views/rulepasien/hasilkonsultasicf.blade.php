@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('layouts.masterpasien')
 @section('title')
     @lang('translation.Orders')
 @endsection
@@ -9,8 +9,8 @@
 
 @section('content')
     @component('common-components.breadcrumb')
-        @slot('pagetitle') Pilih Gejala @endslot
-        @slot('title') Pilih Gejala @endslot
+        @slot('pagetitle') hasil diagnosa cf @endslot
+        @slot('title')hasil diagnosa cf @endslot
     @endcomponent
     <div class="container">
        <div class="card">

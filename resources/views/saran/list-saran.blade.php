@@ -23,9 +23,9 @@
                 <thead>
                     <tr>
                         <th>no</th>
-                        <th>id_saran</th>
-                        <th>id_pasien</th>
-                        <th>pasien</th>
+
+                        <th>nama</th>
+                        <th>email</th>
                         <th>saran</th>
                         
                     </tr>
@@ -37,9 +37,8 @@
                     @foreach($saran as $g)
                     <tr>
                         <td>{{ $no++}}</td>
-                        <td>{{ $g->id_saran }}</td>
-                        <td>{{ $g->id_pasien }}</td>
-                        <td>{{ $g->pasien }}</td>
+                        <td>{{ $g->nama }}</td>
+                        <td>{{ $g->email }}</td>
                         <td>{{ $g->saran }}</td>
                         
                         

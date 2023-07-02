@@ -37,8 +37,14 @@ class DetailGejalaController extends Controller
     {
         $data=[
             'id_penyakit_r'=>$request->id_penyakit_r,
-            'id_gejala_r'=>$request->nama_gejala_r,
+            'id_gejala_r'=>$request->id_gejala_r,
+            'cbr_status'=>$request->cbr_status,
+            'mb'=>$request->mb,
+            'md'=>$request->md,
+            'w'=>$request->w,
         ];
+
+        // DD($data);
             DB::table('tb_detail_gejala')->insert($data);
            return redirect('detailgejala');
     }
@@ -79,8 +85,12 @@ class DetailGejalaController extends Controller
         $data=[
             'id_penyakit_r'=>$request->id_penyakit_r,
             'id_gejala_r'=>$request->id_gejala_r,
+            'cbr_status'=>$request->cbr_status,
+            'mb'=>$request->mb,
+            'md'=>$request->md,
+            'w'=>$request->w,
         ];
-        DB::table('tb_detail_gejala')->where('id_detail_gejala',$id)->update($data);
+        DB::table('tb_detail_gejala')->where('id',$id)->update($data);
         return redirect('detailgejala');
     }
 
@@ -92,7 +102,7 @@ class DetailGejalaController extends Controller
      */
     public function destroy($id)
     {
-        DB::table('tb_detail_gejala')->where('id_detail_gejala',$id)->delete();
+        DB::table('tb_detail_gejala')->where('id',$id)->delete();
         return redirect('detailgejala');
     }
 }

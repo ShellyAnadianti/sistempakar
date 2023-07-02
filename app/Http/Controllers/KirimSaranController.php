@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-class DetailPasienController extends Controller
+class KirimSaranController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,8 +13,8 @@ class DetailPasienController extends Controller
      */
     public function index()
     {
-        $detailpasien=DB::select('SELECT * from tb_pasien order by id_pasien desc');
-       return view('detailpasien.list-detailpasien',compact('detailpasien'));
+        $saran=DB::select('SELECT * from tb_saran order by id_saran asc');
+       return view('saran.list-saran',compact('saran'));
     }
 
     /**
@@ -24,7 +24,7 @@ class DetailPasienController extends Controller
      */
     public function create()
     {
-        return view('detailgejala.add-detailgejala');
+        return view('saran.kirimsaran');
     }
 
     /**
@@ -35,16 +35,13 @@ class DetailPasienController extends Controller
      */
     public function store(Request $request)
     {
-        $data=[
-            'id_penyakit_r'=>$request->id_penyakit_r,
-            'id_gejala_r'=>$request->id_gejala_r,
-            'cbr_status'=>$request->cbr_status,
-            'mb'=>$request->mb,
-            'md'=>$request->md,
-            'w'=>$request->w,
+        $data=[            
+            'nama'=>$request->nama,
+            'email'=>$request->email,
+            'saran'=>$request->saran,
         ];
-            DB::table('tb_detail_gejala')->insert($data);
-           return redirect('detailgejala');
+            DB::table('tb_saran')->insert($data);
+           return redirect('kirimsaran');
     }
 
     /**
@@ -66,9 +63,9 @@ class DetailPasienController extends Controller
      */
     public function edit($id)
     {
-        $detailgejala=DB::select("SELECT * from tb_detail_gejala where id='$id' ");
+        // $penyakit=DB::select("SELECT * from tb_penyakit where id_penyakit='$id' ");
         
-        return view('detailgejala.edit-detailgejala', compact('detailgejala'));
+        // return view('penyakit.edit-penyakit', compact('penyakit'));
     }
 
     /**
@@ -80,16 +77,12 @@ class DetailPasienController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $data=[
-            'id_penyakit_r'=>$request->id_penyakit_r,
-            'id_gejala_r'=>$request->id_gejala_r,
-            'cbr_status'=>$request->cbr_status,
-            'mb'=>$request->mb,
-            'md'=>$request->md,
-            'w'=>$request->w,
-        ];
-        DB::table('tb_detail_gejala')->where('id_detail_gejala',$id)->update($data);
-        return redirect('detailgejala');
+        // $data=[
+            // 'kode_penyakit'=>$request->kode_penyakit,
+            // 'nama_penyakit'=>$request->nama_penyakit,
+        // ];
+        // DB::table('tb_penyakit')->where('id_penyakit',$id)->update($data);
+        // return redirect('penyakit');
     }
 
     /**
@@ -100,7 +93,7 @@ class DetailPasienController extends Controller
      */
     public function destroy($id)
     {
-        DB::table('tb_detail_gejala')->where('id_detail_gejala',$id)->delete();
-        return redirect('detailgejala');
+        DB::table('tb_saran')->where('id_saran',$id)->delete();
+        return redirect('saran');
     }
 }

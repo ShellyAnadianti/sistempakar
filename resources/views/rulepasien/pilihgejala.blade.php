@@ -1,6 +1,6 @@
-@extends('layouts.master')
+@extends('layouts.masterpasien')
 @section('title')
-    @lang('translation.Orders')
+    Pilih Gejala
 @endsection
 @section('css')
     <!-- DataTables -->

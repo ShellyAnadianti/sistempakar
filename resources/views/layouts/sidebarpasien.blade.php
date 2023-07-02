@@ -34,49 +34,7 @@
             <!-- Left Menu Start -->
             <ul class="metismenu list-unstyled" id="side-menu">
                 <li class="menu-title">@lang('translation.Menu')</li>
-                @if (Auth::user()->role == 'admin')
-                <li>
-                    {{-- <a href="{{url('index')}}"> --}}
-                    <a href="{{url('dashboard')}}">
-                        <i class="uil-home-alt"></i><span class="badge rounded-pill bg-primary float-end">01</span>
-                        <span>Dashboard Admin</span>
-                    </a>
-                </li>
-                <li>
-                    {{-- <a href="{{url('index')}}"> --}}
-                    <a href="{{url('gejala')}}">
-                        <i class="uil-bing"></i>
-                        <span>Gejala</span>
-                    </a>
-                </li>
-
-                <li>
-                    {{-- <a href="{{url('index')}}"> --}}
-                    <a href="{{url('penyakit')}}">
-                        <i class="uil-bing"></i>
-                        <span>Penyakit</span>
-                    </a>
-                </li>
-
-                <li>
-                    {{-- <a href="{{url('index')}}"> --}}
-                    <a href="{{url('detailgejala')}}">
-                        <i class="uil-bing"></i>
-                        <span>Detail Gejala</span>
-                    </a>
-                </li>
-
-               
-
-
-                <li>
-                    {{-- <a href="{{url('index')}}"> --}}
-                    <a href="{{url('saran')}}">
-                        <i class="uil-bing"></i>
-                        <span>Saran</span>
-                    </a>
-                </li>
-                @else
+                
                 <li>
                     {{-- <a href="{{url('index')}}"> --}}
                     <a href="{{url('pilihgejala')}}">
@@ -90,7 +48,6 @@
                         <span>Kirim Saran</span>
                     </a>
                 </li>
-                @endif
                   
 
             </ul>

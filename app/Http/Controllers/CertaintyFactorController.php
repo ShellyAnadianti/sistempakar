@@ -113,7 +113,7 @@ class CertaintyFactorController extends Controller
         $penyakitTerdiagnosa = implode(",",$hasildiagnosapenyakit);
 
         //dd($hasildiagnosapenyakit);
-        return view('rulepasien.hasilkonsultasi',compact('penyakitTerdiagnosa'));
+        return view('rulepasien.hasilkonsultasicf',compact('penyakitTerdiagnosa'));
       
     }
 

@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('title')
-    @lang('translation.Orders')
+    Penyakit
 @endsection
 @section('css')
     <!-- DataTables -->
