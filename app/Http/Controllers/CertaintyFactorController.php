@@ -37,7 +37,7 @@ class CertaintyFactorController extends Controller
             }
         }
         $stringchoicegejala= "{".$stringchoicegejala."}";
-        //dump($stringchoicegejala);
+        // dump($stringchoicegejala);
 
         // $gejalaUser = array(
         //     "Gejala14" => 0.4,
@@ -110,7 +110,7 @@ class CertaintyFactorController extends Controller
             array_push($hasildiagnosapenyakit, $getresultdiagnosa[0]->nama_penyakit);
         }
 
-        $penyakitTerdiagnosa = implode(",",$hasildiagnosapenyakit);
+        echo $penyakitTerdiagnosa = implode(",",$hasildiagnosapenyakit);
 
         //dd($hasildiagnosapenyakit);
         return view('rulepasien.hasilkonsultasicf',compact('penyakitTerdiagnosa'));
@@ -144,7 +144,7 @@ class CertaintyFactorController extends Controller
     }
 
     function diagnosaPenyakit($cfTotal) {
-        // dump("KESIMPULAN");
+        //  dump("KESIMPULAN");
         $penyakitTerbesar = '';
         $cfTerbesar = -1;
         asort($cfTotal);
